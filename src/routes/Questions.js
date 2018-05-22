@@ -93,7 +93,7 @@ export default class Questions extends React.Component {
     	if (Config.Broken==="true" && !this.state.alreadyFartedAbout) {
 
     		// schedule the end of the waiting...
-    		setTimeout(function() { this.quitFartingAbout() }.bind(this), 6000);
+    		setTimeout(function() { this.quitFartingAbout() }.bind(this), 10000);
 
     		// return the please wait graphic.   480 x 320
 
@@ -122,7 +122,7 @@ export default class Questions extends React.Component {
 						input = {RadioGroup}
 						label = {currentQuestion.question}
 						name = "answers"
-						disabled = {Config.Broken === "true"?true:false}
+						disabled = {(Config.Broken === "true" && this.state.questionIndex == '1')?true:false}
 						checked= {this.state.value}
 						onChange = {this.handleChange}
 						data={[
@@ -134,7 +134,7 @@ export default class Questions extends React.Component {
 
 					<Box marginVertical = "20px" >
 						<div align="right" width = "100%">
-	      					<Button disabled = {Config.Broken === 'true' || this.state.value==='0'} type="submit" primary  size = "jumbo" iconEnd={icon}>{this.state.questionIndex<3 ? 'Next':'Finish'}</Button>
+	      					<Button disabled = {(Config.Broken === "true" && this.state.questionIndex == '1')|| this.state.value==='0'} type="submit" primary  size = "jumbo" iconEnd={icon}>{this.state.questionIndex<3 ? 'Next':'Finish'}</Button>
 	      				</div>
 	  				</Box>
 				</form>
